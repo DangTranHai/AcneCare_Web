@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import AuthLayout from '../../layouts/AuthLayout'
 import { login as loginRequest } from '../../services/authService'
 import './loginPage.css'
@@ -16,18 +16,28 @@ function mapErrorMessage(message) {
 
 export default function LoginPage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [info, setInfo] = useState('')
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (location.state?.registered) {
+      setInfo('Đăng ký thành công. Vui lòng đăng nhập.')
+    }
+  }, [location.state])
 
   async function handleSubmit(e) {
     e.preventDefault()
     setError('')
+    setInfo('')
     setLoading(true)
     try {
       await loginRequest({ email: email.trim(), password })
-      navigate('/', { replace: true })
+      const to = location.state?.from || '/'
+      navigate(to, { replace: true })
     } catch (err) {
       setError(mapErrorMessage(err.message || 'Đăng nhập thất bại'))
     } finally {
@@ -41,6 +51,11 @@ export default function LoginPage() {
         <h1 className="login-page__title">Đăng nhập</h1>
         <div className="login-page__card">
           <form className="login-page__form" onSubmit={handleSubmit} noValidate>
+            {info ? (
+              <p className="login-page__info" role="status">
+                {info}
+              </p>
+            ) : null}
             {error ? (
               <p className="login-page__error" role="alert">
                 {error}

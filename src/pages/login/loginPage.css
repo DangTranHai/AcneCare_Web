@@ -121,6 +121,21 @@
   box-sizing: border-box;
 }
 
+.login-page__info {
+  width: 100%;
+  max-width: 465px;
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(7, 104, 215, 0.1);
+  color: #054a94;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 .login-page__submit {
   width: 100%;
   max-width: 465px;

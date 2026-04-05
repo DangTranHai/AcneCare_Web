@@ -4,6 +4,22 @@ import AuthLayout from '../../layouts/AuthLayout'
 import { login as loginRequest } from '../../services/authService'
 import './loginPage.css'
 
+// Hàm hỗ trợ giải mã JWT Token ngay trên Frontend
+function parseJwt(token) {
+  try {
+    const base64Url = token.split('.')[1]
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+    const jsonPayload = decodeURIComponent(
+      window.atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      }).join('')
+    )
+    return JSON.parse(jsonPayload)
+  } catch (e) {
+    return null
+  }
+}
+
 function mapErrorMessage(message) {
   if (message === 'Invalid credentials') {
     return 'Email hoặc mật khẩu không đúng.'
@@ -34,10 +50,23 @@ export default function LoginPage() {
     setError('')
     setInfo('')
     setLoading(true)
+    
     try {
-      await loginRequest({ email: email.trim(), password })
+      // 1. Gọi API đăng nhập 
+      const data = await loginRequest({ email: email.trim(), password })
+      
+      // 2. Lấy thẳng userId từ Backend trả về
+      const userId = data?.result?.userId;
+
+      // 3. Lưu vào LocalStorage
+      if (userId) {
+        localStorage.setItem('userId', userId)
+      }
+
+      // Chuyển hướng
       const to = location.state?.from || '/'
       navigate(to, { replace: true })
+
     } catch (err) {
       setError(mapErrorMessage(err.message || 'Đăng nhập thất bại'))
     } finally {

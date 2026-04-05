@@ -29,6 +29,9 @@ export default function LandingPage() {
               <Link className="landing__nav-link" to="/">
                 Trang chủ
               </Link>
+              <Link className="landing__nav-link" to="/phan-tich">
+                Phân tích
+              </Link>
               <Link className="landing__nav-link" to="/login">
                 Đăng nhập
               </Link>

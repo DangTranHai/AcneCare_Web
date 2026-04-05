@@ -11,6 +11,7 @@ import EditPostPage from "./pages/posts/EditPostPage";
 import AcnePrediction from "./pages/acne-prediction/AcnePrediction";
 import AcneHistoryList from "./pages/acne-prediction/AcneHistoryList";
 import AcneHistoryDetail from "./pages/acne-prediction/AcneHistoryDetail";
+import Admin from "./pages/admin/admin";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route path="/phan-tich" element={<AcnePrediction />} />
       <Route path="/lich-su" element={<AcneHistoryList />} />
       <Route path="/lich-su/:id" element={<AcneHistoryDetail />} />
+      <Route path="/admin/*" element={<Admin />} />
     </Routes>
   );
 }

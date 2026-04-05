@@ -1,0 +1,96 @@
+/* User management table — Figma DACK_CC node 18-89 */
+.um-table-wrap {
+  width: 100%;
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.um-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.um-table thead th {
+  text-align: left;
+  padding: 0.875rem 1.25rem;
+  background: #f8fafc;
+  font-weight: 600;
+  color: #64748b;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.um-table tbody td {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--admin-border);
+  color: var(--admin-text);
+  vertical-align: middle;
+}
+
+.um-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.um-table .um-col-actions {
+  text-align: right;
+  width: 1%;
+  white-space: nowrap;
+}
+
+.um-email {
+  color: #64748b;
+  text-decoration: underline;
+}
+
+.um-email:hover {
+  color: var(--admin-heading);
+}
+
+.um-status {
+  color: #64748b;
+}
+
+.um-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.um-view {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--admin-accent);
+  font: inherit;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.um-view:hover {
+  filter: brightness(0.95);
+}
+
+.um-lock {
+  padding: 0.45rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #dc2626;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.um-lock:hover {
+  filter: brightness(1.05);
+}
+
+.um-lock:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}
